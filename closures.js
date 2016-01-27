@@ -10,11 +10,12 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+  var inner = outer();
 
 //Once you do that, invoke inner.
 
   //Code Here
-
+  inner();
 
 
 //Next problem
@@ -33,7 +34,8 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
+  var callMe = callFriend();
+  callMe('435-2159248');
 
 
 //Next Problem
@@ -45,6 +47,13 @@ var callFriend = function(){
 */
 
   //Code Here
+  var makeCounter = function() {
+    var num = 0;
+    return function() {
+      num += 1;
+      return num;
+    }
+  }
   var count = makeCounter();
   count(); // 1
   count(); // 2
@@ -58,12 +67,31 @@ var callFriend = function(){
 
 
 /*
-  Write a function named codeLove that returns the string 'I love code'. Write a second function named codeFriend that accepts the first function as it's first parameter. The second function should return a new third function. Store the third function in a variable, codeEcho which, when invoked, invokes the first, original function that was passed in, but will only ever do so once (returns null after first invocation).
+  Write a function named codeLove that returns the string 'I love code'. Write a second function 
+  named codeFriend that accepts the first function as it's first parameter. The second function should 
+  return a new third function. Store the third function in a variable, codeEcho which, when invoked, 
+  invokes the first, original function that was passed in, but will only ever do so once 
+  (returns null after first invocation).
 */
 
   //Code Here
+  function codeLove() {
+    return "I love code";
+  }
 
+  function codeFriend(myFunction) {
+    var count = 0;
+    return function() {
+      count += 1;
+      if (count < 2) {
+        return myFunction();
+      } else {
+        return null;
+      }
+    }
+  }
 
+  var codeEcho = codeFriend(codeLove);
 
 //Next Problem
 
